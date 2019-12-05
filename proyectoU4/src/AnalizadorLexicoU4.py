@@ -30,3 +30,35 @@ t_REQUIRE_ONCE = r'require_once'
 t_CLASS = r'CLASS'
 t_FOR = r'for'
 t_ECHO = r'echo'
+t_CASE = r'case'
+t_TRY = r'try'
+t_NEW = r'new'
+t_FINALLY = r'finally'
+t_IF = r'if'
+
+t_SUMA = r'\+'
+t_RESTA = r'\-'
+t_MULTIPLICACION = r'\*'
+t_DIVISION = r'/'
+
+t_MAYOR = r'>'
+t_MENOR = r'<'
+t_MAYOR_IGUAL = r'>='
+t_MENOR_IGUAL = r'<='
+t_IGUAL = r'=='
+t_DIFERENTE = r'!='
+t_DISTINTO = r'<>'
+t_ASIGNACION = r'='
+
+t_PARENTESIS_IZQ = r'\('
+t_PARENTESIS_DER = r'\)'
+t_LLAVE_IZQ = r'\{'
+t_LLAVE_DER = r'\}'
+t_PCOMA = r';'
+
+#T_VARIABLES = r'[a-zA-Z_]\w*'
+t_ignore = r' \t'
+
+def t_NUMEROS(t):
+    r'\d+.?\d*'
+    return t
