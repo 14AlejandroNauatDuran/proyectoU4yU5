@@ -109,3 +109,19 @@ def buscarFicheros(directorio):
     
     print("Has escogido \"%s\" \n" %files[int(numArchivos)-1])
     return files[int(numArchivos)-1]
+
+
+directorio = 'C:/Users/IsraelPomol/Desktop/proyectoU4/test/'
+archivo = buscarFicheros(directorio)
+test = directorio + archivo
+fp = codecs.open(test,"r","utf-8")
+cadena = fp.read()#la variable cadena contiene el texto de todo el documento
+fp.close 
+
+analizador = lex.lex()
+analizador.input(cadena)
+
+while True:
+    tok = analizador.token()
+    if not tok : break
+    print(tok)
