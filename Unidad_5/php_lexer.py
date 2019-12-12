@@ -199,3 +199,203 @@ def t_FOR(t):
 def t_FUNCTION(t):
     r'function'
     return t
+
+    def t_GLOBAL(t):
+    r'global'
+    return t
+
+def t_GOTO(t):
+    r'goto'
+    return t
+
+def t_IF(t):
+    r'if'
+    return t
+
+def t_IMPLEMENTS(t):
+    r'implements'
+    return t
+
+def t_INCLUDE(t):
+    r'include'
+    return t
+
+def t_INCLUDE_ONCE(t):
+    r'include_once'
+    return t
+
+def t_INSTANCEOF(t):
+    r'instanceof'
+    return t
+
+def t_INSTEADOF(t):
+    r'insteadof'
+    return t
+
+def t_INTERFACE(t):
+    r'interface'
+    return t
+
+def t_ISSET(t):
+    r'isset'
+    return t
+
+def t_LIST(t):
+    r'list'
+    return t
+
+def t_NAMESPACE(t):
+    r'namespace'
+    return t
+
+def t_NEW(t):
+    r'new'
+    return t
+
+def t_OR(t):
+    r'or|\|\||OR'
+    return t
+
+def t_PRINT(t):
+    r'print'
+    return t
+
+def t_PRIVATE(t):
+    r'private'
+    return t
+
+def t_PROTECTED(t):
+    r'protected'
+    return t
+
+def t_PUBLIC(t):
+    r'public'
+    return t
+
+def t_REQUIRE(t):
+    r'require'
+    return t
+
+def t_REQUIRE_ONCE(t):
+    r'require_once'
+    return t
+
+def t_RETURN(t):
+    r'return'
+    return t
+
+def t_STATIC(t):
+    r'static'
+    return t
+
+def t_SWITCH(t):
+    r'switch'
+    return t
+
+def t_THROW(t):
+    r'throw'
+    return t
+
+def t_TRAIT(t):
+    r'trait'
+    return t
+
+def t_TRY(t):
+    r'try'
+    return t
+
+def t_UNSET(t):
+    r'unset'
+    return t
+
+def t_USE(t):
+    r'use'
+    return t
+
+def t_VAR(t):
+    r'var'
+    return t
+
+def t_WHILE(t):
+    r'while'
+    return t
+
+def t_XOR(t):
+    r'xor'
+    return t
+
+def t_TRUE(t):
+    r'true'
+    return t
+
+def t_FALSE(t):
+    r'false'
+    return t
+
+# RE SYMBOLS
+t_PLUS      = r'\+'
+t_MINUS     = r'-'
+t_TIMES     = r'\*'
+t_DIVIDE    = r'/'
+t_EQUAL     = r'='
+t_DISTINT   = r'!'
+t_LESS      = r'<'
+t_GREATER   = r'>'
+t_SEMI      = r';'
+t_COMMA     = r','
+t_LPAREN    = r'\('
+t_RPAREN    = r'\)'
+t_LBRACKET  = r'\['
+t_RBRACKET  = r'\]'
+t_LBLOCK    = r'{'
+t_RBLOCK    = r'}'
+t_COLON     = r':'
+t_AMPERSANT = r'\&'
+t_HASHTAG   = r'\#'
+t_DOT       = r'\.'
+t_QUOTES    = r'\"'
+t_APOSTROPHE = r'\''
+
+def t_LESSEQUAL(t):
+    r'<='
+    return t
+
+def t_GREATEREQUAL(t):
+    r'>='
+    return t
+
+def t_DEQUAL(t):
+    r'!='
+    return t
+
+def t_ISEQUAL(t):
+    r'=='
+    return t
+
+def t_MINUSMINUS(t):
+    r'--'
+    return t
+
+def t_PLUSPLUS(t):
+    r'\+\+'
+    return t
+
+def t_TIMESTIMES(t):
+    r'\*\*'
+    return t
+
+def t_DOT_DOT(t):
+    r'::'
+    return t
+
+
+# RE OTHERS
+
+
+def t_COMMENTS(t):
+    r'\/\*([^*]|\*[^\/])*(\*)+\/'
+    t.lexer.lineno += t.value.count('\n')
+
+def t_COMMENTS_C99(t):
+    r'(\/\/|\#)(.)*?\n'
+    t.lexer.lineno += 1
