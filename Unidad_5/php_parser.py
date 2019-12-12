@@ -152,3 +152,181 @@ def p_statement(p):
 				 | echo_stmt
 	'''
 	pass
+
+def p_expression_stmt(p):
+	'expression_stmt : expression SEMI'
+	pass
+
+
+def p_selection_stmt_1(p):
+	'''selection_stmt : IF LPAREN expression RPAREN statement
+					  | IF LPAREN expression RPAREN statement selection
+
+	'''
+	pass
+
+def p_selection(p):
+	'''selection : ELSE statement
+				 | ELSEIF statement selection
+	 '''
+	pass
+
+def p_selection_stmt_2(p):
+	'''selection_stmt : SWITCH LPAREN var RPAREN statement
+					  | CASE NUM COLON statement BREAK SEMI
+					  | DEFAULT COLON statement BREAK SEMI
+
+	'''
+	pass
+
+def p_iteration_stmt_1(p):
+	'iteration_stmt : FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN statement '
+	pass
+def p_iteration_stmt_2(p):
+	'iteration_stmt : WHILE LPAREN expression RPAREN statement'
+	pass
+
+def p_iteration_stmt_3(p):
+	'iteration_stmt : DO LBLOCK statement SEMI RBLOCK WHILE LPAREN expression RPAREN'
+	pass
+
+
+def p_return_stmt(p):
+	'''return_stmt : RETURN SEMI
+				   | RETURN expression SEMI
+	'''
+	pass
+
+def p_expression(p):
+	'''expression : var EQUAL expression
+				  | simple_expression
+				  | var EQUAL AMPERSANT IDVAR
+			      | expression AND expression
+				  | expression OR expression
+	'''
+	pass
+
+def p_var(p):
+	'''var : IDVAR
+		   | IDVAR LBRACKET expression RBRACKET
+	'''
+	pass
+
+
+def p_simple_expression(p):
+	'''simple_expression : additive_expression relop additive_expression
+						 | additive_expression
+	'''
+	pass
+
+def p_relop(p):
+	'''relop : LESS
+			 | LESSEQUAL
+			 | GREATER
+			 | GREATEREQUAL
+			 | DEQUAL
+			 | DISTINT
+			 | ISEQUAL
+	'''
+	pass
+
+def p_additive_expression(p):
+	'''additive_expression : additive_expression addop term
+    					   | term
+    					   | term MINUSMINUS
+    				       | term PLUSPLUS
+	'''
+	pass
+
+def p_addop(p):
+	'''addop : PLUS
+			 | MINUS
+	'''
+	pass
+
+def p_term(p):
+	'''term : term mulop factor
+			| factor
+	'''
+	pass
+
+def p_mulop(p):
+	'''mulop : TIMES
+			 | DIVIDE
+	'''
+	pass
+
+def p_factor(p):
+	'''factor : LPAREN expression RPAREN
+			  | var
+			  | NUM
+			  | boolean
+			  | IDVAR LPAREN args RPAREN
+	'''
+	pass
+
+def p_args(p):
+	'''args : args_list
+			| empty
+			| VOID
+	'''
+	pass
+
+def p_args_list(p):
+	'''args_list : args_list COMMA expression
+				 | expression
+	'''
+	pass
+
+def p_boolean(p):
+	'''boolean : TRUE
+			   | FALSE
+	'''
+	pass
+
+def p_tclass(p):
+	'typeclass : ID IDVAR EQUAL NEW constructor SEMI'
+	pass
+
+def p_costructor(p):
+	'''constructor : ID LPAREN RPAREN
+				   | ID LPAREN args RPAREN
+	'''
+	pass
+
+def p_empty(p):
+	'empty :'
+	pass
+
+def p_error(p):
+    if VERBOSE:
+        if p is not None:
+            print (chr(27)+"[1;31m"+"\t ERROR: Syntax error - Unexpected token" + chr(27)+"[0m")
+            print ("\t\tLine: "+str(p.lexer.lineno)+"\t=> "+str(p.value))
+        else:
+            print (chr(27)+"[1;31m"+"\t ERROR: Syntax error"+chr(27)+"[0m")
+            print ("\t\tLine:  "+str(php_lexer.lexer.lineno))
+
+    else:
+        raise Exception('syntax', 'error')
+
+parser = yacc.yacc()
+
+if __name__ == '__main__':
+    if (len(sys.argv) > 1):
+        script = sys.argv[1]
+
+        scriptfile = open(script, 'r')
+        scriptdata = scriptfile.read()
+        #print (scriptdata)
+
+        print (">>>>INICIANDO ANALISIS SINTACTICO")
+        parser.parse(scriptdata, tracking=False)
+        # print(">>>no se encontraron errores sintacticos<<<<")
+        print (">>>>ANALISIS SINTACTICO FINALIZADO")
+		# print (chr(27)+"[0;36m"+"ANALISIS SINTACTICO EXITOSO"+chr(27)+"[0m")
+
+
+    else:
+        print (chr(27)+"[0;31m"+"Pase el archivo de script PHP como parametro:")
+        print (chr(27)+"[0;36m"+"\t$ python php_parser.py"+chr(27)+"[1;31m"+" <filename>.php"+chr(27)+"[0m")
